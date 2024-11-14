@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { remarkDiagram } from "./remark-plugins/remark-diagram.mjs";
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,6 +30,21 @@ export default defineConfig({
 					autogenerate: { directory: 'Test' },
 				},
 			],
+			head: [
+				{
+					tag: "script",
+					attrs: {
+						src: "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"
+					}
+				},
+				{
+					tag: "script",
+					content: '(() => { const storedTheme = typeof localStorage !== "undefined" && localStorage.getItem("starlight-theme"); mermaid.initialize({ startOnLoad: true, theme: storedTheme }); })();',
+				},
+			],
 		}),
 	],
+	markdown: {
+		remarkPlugins: [remarkDiagram],
+	},
 });
