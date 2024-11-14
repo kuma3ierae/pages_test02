@@ -3,6 +3,8 @@ title: Example Reference
 description: A reference page in my new Starlight docs site.
 ---
 
+# mermaid
+
 ```diff
 + a
 - b
